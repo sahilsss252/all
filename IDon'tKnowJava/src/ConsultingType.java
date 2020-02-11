@@ -1,0 +1,7 @@
+
+public enum ConsultingType {
+
+	MODULAR_KITCHEN,
+	FLOORING_AND_CEILING,
+	FULL_HOME_RENOVATION;
+}
