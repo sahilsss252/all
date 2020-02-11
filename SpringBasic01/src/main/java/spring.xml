@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    ">
+ 
+	<bean id="md" class="com.lti.app.MyDao1" lazy-init="true">
+		<constructor-arg value="LTI" ></constructor-arg>
+	 	<property name="cmpName1" value="Mahape"></property>
+	 	<property name="dao2" ref="md2"></property>
+	</bean>
+	
+	<bean id="md2" class="com.lti.app.MyDao2">
+	
+	</bean>
+</beans>
