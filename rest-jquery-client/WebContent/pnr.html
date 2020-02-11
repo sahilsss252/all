@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>PNR Status</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+$(function(){
+	$("form").submit(function(evt){
+		
+		evt.preventDefault();//prevent browser from reloading the page
+		 var pnrNo=$("#pnrNo").val();
+		var url="http://localhost:8090/_rest-demo/app/pnr?pnrNo="+pnrNo;
+	
+		$.ajax({
+			
+			url : url,
+			method : 'GET',
+			success : function(data){
+				alert(JSON.stringify(data));
+				
+				var tn = $("<p />").text("Train no:"+data.trainNo);
+				var tdate = $("<p />").text("Train date:"+data.trainNo);
+				 
+				for(let p of data.passengers)
+					{
+					
+					var pn = $("<p />").text(p.name);
+					var pa = $("<p />").text(p.age);
+					var pg = $("<p />").text(p.gender);
+					var ps = $("<p />").text(p.status);
+					$("#nm").append(pn);
+					$("#ag").append(pa);
+					$("#ge").append(pg);
+					$("#st").append(ps);
+					}
+				
+				$("#my").append(tn);
+			}
+		})	
+	})
+	
+})
+</script>
+<style>
+tr{
+border:1px solid black;
+
+}
+td{
+
+border:1px solid black;
+}
+
+</style>
+</head>
+<body>
+
+<form >
+<h2> Enter the PNR:<input type="text" id="pnrNo"></h2>
+<button type="submit">Get Status</button>
+</form>
+<div id="my">
+<table style="border:1px solid black">
+<tr><td>Name</td><td>Age</td><td>Gender</td><td>Status</td></tr>
+<tr><td id="nm"></td><td id="ag"></td><td id="ge"></td><td id="st"></td></tr>
+</table>
+</div>
+
+</body>
+</html>
